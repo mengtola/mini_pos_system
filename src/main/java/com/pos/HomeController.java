@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 
 	@RequestMapping("/home")
-	public ModelAndView mymethod(){
-		return new ModelAndView("home");
+	public ModelAndView index(){
+		return new ModelAndView("home/index");
 	}
 }
