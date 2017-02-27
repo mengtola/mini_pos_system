@@ -1,6 +1,7 @@
 package com.account;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,14 +13,14 @@ import com.model.Login;
 public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView index(){
+	public ModelAndView index(Model model){
 		
+	    model.addAttribute("login", new Login()); 
 		return new ModelAndView("login/index");
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView index(@ModelAttribute Login login){
-		
 		return new ModelAndView("login/index");
 	}
 	
