@@ -1,6 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-<html>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
 <head>
 	<title>Mini POS System</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -11,6 +15,8 @@
    <link href="../../../assets/css/style.css" rel="stylesheet" />
    <link href="../../../assets/css/style-responsive.css" rel="stylesheet" />
    <link href="../../../assets/css/style-default.css" rel="stylesheet" id="style_color" />
+   
+      <script src="../../../assets/js/jquery-1.8.3.min.js"></script>
 
 </head>
 <body>
@@ -256,7 +262,7 @@
                            <ul class="dropdown-menu extended logout">
                                <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
                                <li><a href="#"><i class="icon-cog"></i> My Settings</a></li>
-                               <li><a href="/Logout"><i class="icon-key"></i> Log Out</a></li>
+                               <li><a href="/logout.html"><i class="icon-key"></i> Log Out</a></li>
                            </ul>
                        </li>
                        <!-- END USER LOGIN DROPDOWN -->
@@ -294,8 +300,8 @@
                       <span class="arrow"></span>
                   </a>
                   <ul class="sub">
-                      <li><a class="" href="general.html">Product List</a></li>
-                      <li><a class="" href="button.html">Add New</a></li>
+                      <li><a class="" href="/product.html">Product List</a></li>
+                      <li><a class="" href="/product/add.html">Add New</a></li>
                       
                   </ul>
               </li>
@@ -306,8 +312,8 @@
                       <span class="arrow"></span>
                   </a>
                   <ul class="sub">
-                      <li><a class="" href="general.html">Category List</a></li>
-                      <li><a class="" href="button.html">Add New</a></li>
+                      <li><a class="" href="/category.html">Category List</a></li>
+                      <li><a class="" href="/category/add.html">Add New</a></li>
                       
                   </ul>
               </li>
@@ -318,8 +324,8 @@
                       <span class="arrow"></span>
                   </a>
                   <ul class="sub">
-                      <li><a class="" href="general.html">Brand List</a></li>
-                      <li><a class="" href="button.html">Add New</a></li>
+                      <li><a class="" href="/brand.html">Brand List</a></li>
+                      <li><a class="" href="/brand/add.html">Add New</a></li>
                       
                   </ul>
               </li>  

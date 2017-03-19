@@ -21,12 +21,16 @@
    
    <filter>
    	<filter-name>auth</filter-name>
-   	<filter-class>com.filter.Auth</filter-class>
+   	<filter-class>com.pos.filter.Auth</filter-class>
    </filter>
    
    <filter-mapping>
    	<filter-name>auth</filter-name>
    	<url-pattern>/</url-pattern>
+   </filter-mapping>
+    <filter-mapping>
+   	<filter-name>auth</filter-name>
+   	<url-pattern>/home.html</url-pattern>
    </filter-mapping>
    <filter-mapping>
    	<filter-name>auth</filter-name>
@@ -34,7 +38,39 @@
    </filter-mapping>
     <filter-mapping>
    	<filter-name>auth</filter-name>
-   	<url-pattern>/produc</url-pattern>
+   	<url-pattern>/product/add.html</url-pattern>
+   </filter-mapping>
+   <filter-mapping>
+   	<filter-name>auth</filter-name>
+   	<url-pattern>/category.html</url-pattern>
+   </filter-mapping>
+    <filter-mapping>
+   	<filter-name>auth</filter-name>
+   	<url-pattern>/category/add.html</url-pattern>
+   </filter-mapping>
+   <filter-mapping>
+   	<filter-name>auth</filter-name>
+   	<url-pattern>/brand.html</url-pattern>
+   </filter-mapping>
+    <filter-mapping>
+   	<filter-name>auth</filter-name>
+   	<url-pattern>/brand/add.html</url-pattern>
+   </filter-mapping>
+   <filter-mapping>
+   	<filter-name>auth</filter-name>
+   	<url-pattern>/product.html</url-pattern>
+   </filter-mapping>
+    <filter-mapping>
+   	<filter-name>auth</filter-name>
+   	<url-pattern>/product/add.html</url-pattern>
+   </filter-mapping>
+   <filter-mapping>
+   	<filter-name>auth</filter-name>
+   	<url-pattern>/sale.html</url-pattern>
+   </filter-mapping>
+    <filter-mapping>
+   	<filter-name>auth</filter-name>
+   	<url-pattern>/sale/add.html</url-pattern>
    </filter-mapping>
   
 </web-app>

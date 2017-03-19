@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.pos.domain.Brands" table="brands" catalog="mini_pos_system">
+        <id name="braId" type="java.lang.Integer">
+            <column name="bra_id" />
+            <generator class="identity" />
+        </id>
+        <set name="product" inverse="true" cascade="all">
+            <key column="bra_id" not-null="true" />
+            <one-to-many class="com.pos.domain.Products" />
+        </set>
+        <property name="braName" type="string">
+            <column name="bra_name" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
