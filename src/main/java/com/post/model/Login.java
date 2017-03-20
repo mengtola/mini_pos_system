@@ -1,4 +1,4 @@
-package com.model;
+package com.post.model;
 
 public class Login {
 	private String username;

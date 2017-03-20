@@ -1,4 +1,4 @@
-package com.datasource;
+package com.pos.config;
 
 import java.sql.Connection;
 import java.sql.SQLException;

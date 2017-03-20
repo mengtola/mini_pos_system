@@ -1,5 +1,5 @@
 /***/
-package com.domain;
+package com.pos.domain;
 
 import java.util.Date;
 

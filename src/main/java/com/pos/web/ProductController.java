@@ -1,22 +1,23 @@
-package com.pos;
+package com.pos.web;
 
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import com.dao.*;
-import com.domain.Users;
+import com.pos.domain.Users;
+import com.pos.dao.*;
 
 @Controller
 public class ProductController {
 
-	@RequestMapping("/product")
+	@RequestMapping(value = "/product", method = RequestMethod.GET)
 	public ModelAndView index(){
 		return new ModelAndView("product/index");
 	}
 	
-	@RequestMapping("/product/add")
+	@RequestMapping(value = "/product/add", method = RequestMethod.GET)
 	public ModelAndView add(){
 	   	
 		testGetList();

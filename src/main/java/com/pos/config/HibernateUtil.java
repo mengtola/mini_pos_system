@@ -1,4 +1,4 @@
-package com.xml;
+package com.pos.config;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
