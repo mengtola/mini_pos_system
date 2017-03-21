@@ -31,14 +31,14 @@ public class BrandController {
 	
 	@RequestMapping(value = "/brand/add", method = RequestMethod.GET)
 	public ModelAndView add(Model model){
-		model.addAttribute("brand",new Brands());
+		model.addAttribute("brands",new Brands());
 		return new ModelAndView("brand/add");
 	}
 	
 	@RequestMapping(value = "/brand/add", method = RequestMethod.POST)
-	public ModelAndView add(@ModelAttribute Brands brand,HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public ModelAndView add(@ModelAttribute Brands brands,HttpServletRequest request,HttpServletResponse response) throws IOException{
 		
-		if (dao.addBrand(brand) != null) {
+		if (dao.addBrand(brands) != null) {
 			response.sendRedirect("/brand.html");
 		}
 		return new ModelAndView("brand/add");

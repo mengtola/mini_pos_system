@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -292,6 +293,18 @@
                       <i class="icon-dashboard"></i>
                       <span>Sale</span>
                   </a>
+              </li>
+              <li class="sub-menu">
+                  <a href="javascript:;" class="">
+                      <i class="icon-film"></i>
+                      <span>Customer</span>
+                      <span class="arrow"></span>
+                  </a>
+                  <ul class="sub">
+                      <li><a class="" href="/customer.html">Customer List</a></li>
+                      <li><a class="" href="/customer/add.html">Add New</a></li>
+                      
+                  </ul>
               </li>
 			  <li class="sub-menu">
                   <a href="javascript:;" class="">

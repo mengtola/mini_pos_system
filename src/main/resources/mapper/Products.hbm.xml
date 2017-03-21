@@ -22,9 +22,11 @@
          <property name="proStatus" type="boolean">
             <column name="pro_status" not-null="true" />
         </property>
-        <many-to-one name="category" class="com.pos.domain.Categories" 
-        	column="cat_id" not-null="true" />
-         <many-to-one name="brand" class="com.pos.domain.Brands" 
-        	column="bra_id" not-null="true" />
+        <!-- many-to-one name="category" class="com.pos.domain.Categories" fetch="select">
+            <column name="cat_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="brand" class="com.pos.domain.Brands" fetch="select">
+            <column name="bra_id" not-null="true" />
+        </many-to-one> -->
     </class>
 </hibernate-mapping>

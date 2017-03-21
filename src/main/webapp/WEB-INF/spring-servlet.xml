@@ -15,4 +15,13 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 <property name="suffix" value=".jsp"></property>
 </bean>
 
+	<!-- <bean id="conversionService"
+	    class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+	    <property name="converters">
+	       <list>
+	          <bean class="com.pos.service.IdToCustomerConverter"/>
+	       </list>
+	    </property>
+	</bean> -->
+
 </beans>

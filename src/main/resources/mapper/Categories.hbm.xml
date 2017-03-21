@@ -7,10 +7,10 @@
             <column name="cat_id" />
             <generator class="identity" />
         </id>
-        <set name="product" inverse="true" cascade="all">
+		<!-- <set name="products" table="products" inverse="true" lazy="true" fetch="select">
             <key column="cat_id" not-null="true" />
             <one-to-many class="com.pos.domain.Products" />
-        </set>
+        </set>  -->
         <property name="catName" type="string">
             <column name="cat_name" not-null="true" />
         </property>

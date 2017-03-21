@@ -1,10 +1,23 @@
 /***/
 package com.pos.domain;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+@Entity
+@Table(name = "products", catalog="mini_pos_system")
 public class Products implements java.io.Serializable {
     private int proId;
-    private int catId;
-    private int braId;
     private String proName;
     private String proCode;
     private int qty;
@@ -12,20 +25,10 @@ public class Products implements java.io.Serializable {
     private boolean proStatus;
     private Categories category;
     private Brands brand;
-    
-    public Products() {
-        
-    }
-    public Products(int proId,int catId,int braId, String proName, String proCode,int qty,int unitPrice,boolean proStatus) {
-        this.proId = proId;
-        this.catId = catId;
-        this.proName = proName;
-        this.proCode = proCode;
-        this.qty = qty;
-        this.unitPrice = unitPrice;
-        this.proStatus = proStatus;
-    }
 
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "pro_id", unique = true, nullable = false)
     public int getProId() {
         return proId;
     }
@@ -34,22 +37,7 @@ public class Products implements java.io.Serializable {
         this.proId = proId;
     }
     
-    public int getCatId(){
-    	return catId;
-    }
-    
-    public void setCatId(int catId){
-    	this.catId = catId;
-    }
-    
-    public int getBraId(){
-    	return braId;
-    }
-    
-    public void setBraId(int brId){
-    	this.braId = braId;
-    }
-    
+    @Column(name = "pro_name", nullable = false, length = 100)
     public String getProName(){
     	return proName;
     }
@@ -58,6 +46,7 @@ public class Products implements java.io.Serializable {
     	this.proName = proName;
     }
     
+    @Column(name = "pro_code", nullable = false, length = 100)  
     public String getProCode(){
     	return proCode;
     }
@@ -66,6 +55,7 @@ public class Products implements java.io.Serializable {
     	this.proCode = proCode;
     }
 
+    @Column(name = "qty")
     public int getQty(){
     	return qty;
     }
@@ -74,6 +64,7 @@ public class Products implements java.io.Serializable {
     	this.qty = qty;
     }
     
+    @Column(name = "unit_price")  
     public int getUnitPrice(){
     	return unitPrice;
     }
@@ -82,6 +73,7 @@ public class Products implements java.io.Serializable {
     	this.unitPrice = unitPrice;
     }
     
+    @Column(name = "pro_status")
     public boolean getProStatus(){
     	return proStatus;
     }
@@ -90,6 +82,8 @@ public class Products implements java.io.Serializable {
     	this.proStatus = proStatus;
     }
     
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cat_id", nullable= false)
     public Categories getCategory(){
     	return category;
     }
@@ -98,6 +92,8 @@ public class Products implements java.io.Serializable {
     	this.category = category;
     }
     
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bra_id", nullable= false)
     public Brands getBrand(){
     	return brand;
     }

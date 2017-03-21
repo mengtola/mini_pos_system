@@ -2,7 +2,21 @@
 package com.pos.domain;
 
 import java.util.Date;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
+@Entity
+@Table(name = "users", catalog="mini_pos_system", uniqueConstraints = {@UniqueConstraint(columnNames="user_id")})
 public class Users implements java.io.Serializable {
     private int userId;
     private String name;
@@ -11,20 +25,10 @@ public class Users implements java.io.Serializable {
     private boolean active;
     private Date regDate;
     private Date lastLogin;
-    
-    public Users() {
-        
-    }
-    public Users(int userId, String name,String username,String password, boolean active, Date regDate, Date lastLogin) {
-        this.userId = userId;
-        this.name  = name;
-        this.username = username;
-        this.password = password;
-        this.active = active;
-        this.regDate = regDate;
-        this.lastLogin = lastLogin;
-    }
 
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "user_id", unique = true, nullable = false)
     public int getUserId() {
         return userId;
     }
@@ -33,6 +37,7 @@ public class Users implements java.io.Serializable {
         this.userId = userId;
     }
 
+    @Column(name = "name", nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -40,7 +45,8 @@ public class Users implements java.io.Serializable {
     public void setName(String name) {
         this.name = name;
     }
-   
+ 
+    @Column(name = "username", nullable = false, length = 100)
     public String getUsername(){
     	
     	return username;
@@ -50,6 +56,7 @@ public class Users implements java.io.Serializable {
         this.username = username;
     }
     
+    @Column(name = "password", nullable = false, length = 100)
     public String getPassword(){
     	
     	return password;
@@ -60,6 +67,7 @@ public class Users implements java.io.Serializable {
     	this.password = password;
     }
     
+    @Column(name = "active")
     public boolean getActive(){
     	return active;
     }
@@ -69,15 +77,19 @@ public class Users implements java.io.Serializable {
     	this.active = active;
     }
     
-    public Date getregDate(){
+    @Temporal(TemporalType.DATE)
+    @Column(name = "reg_date", nullable = false)
+    public Date getRegDate(){
     	
     	return regDate;
     }
     
-    public void setregDate(Date regDate){
+    public void setRegDate(Date regDate){
     	this.regDate = regDate;
     }
     
+    @Temporal(TemporalType.DATE)
+    @Column(name = "last_login", nullable = false)
     public Date getlastLogin(){
     	
     	return lastLogin;

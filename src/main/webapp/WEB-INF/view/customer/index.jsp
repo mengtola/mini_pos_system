@@ -5,7 +5,7 @@
 <div class="row-fluid">
 	<div class="widget blue">
 		<div class="widget-title">
-			<h4><i class="icon-reorder"></i> All Brands</h4>
+			<h4><i class="icon-reorder"></i> All Categories</h4>
 			<span class="tools">
 			<a href="javascript:;" class="icon-chevron-down"></a>
 			<a href="javascript:;" class="icon-remove"></a>
@@ -34,15 +34,17 @@
 				 <thead>
 				 <tr>
 					 <th>No</th>
-					 <th>Brand Name</th>
+					 <th>Customer Name</th>
+					 <th>Customer Phone</th>
 					 <th></th>
 				 </tr>
 				 </thead>
 				 <tbody>
-				 	<c:forEach var="item" items="${bra_list}" varStatus="key">
+				 	<c:forEach var="item" items="${cus_list}" varStatus="key">
 		  				<tr>
 		  					<td>${key.index + 1}</td>
-		  					<td>${item.getBraName()}</td>
+		  					<td>${item.getCusName()}</td>
+		  					<td>${item.getCusPhone()}</td>
 		  					<td></td>
 		  				</tr>
 		  			</c:forEach>
@@ -60,7 +62,7 @@
 <script>
 	$(function(){
 		$("#editable_new").click(function(){
-			window.location="/brand/add.html";
+			window.location="/customer/add.html";
 		});
 	});
 </script>

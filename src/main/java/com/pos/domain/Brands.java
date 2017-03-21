@@ -1,23 +1,30 @@
 /***/
 package com.pos.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+@Entity
+@Table(name = "brands", catalog="mini_pos_system", uniqueConstraints = {@UniqueConstraint(columnNames="bra_id")})
 public class Brands implements java.io.Serializable {
     private int braId;
     private String braName;
-    private String braDescription;
-    private Set<Products> product;
-    
-    public Brands() {
-        
-    }
-    public Brands(int braId, String braName, String braDescription) {
-        this.braId = braId;
-        this.braName = braName;
-        this.braDescription = braDescription;
-    }
+    private Set<Products> products = new HashSet<Products>(0);
 
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "bra_id", unique = true, nullable = false)
     public int getBraId() {
         return braId;
     }
@@ -26,6 +33,7 @@ public class Brands implements java.io.Serializable {
         this.braId = braId;
     }
 
+    @Column(name = "bra_name", nullable = false, length = 100)
     public String getBraName() {
         return braName;
     }
@@ -34,12 +42,13 @@ public class Brands implements java.io.Serializable {
         this.braName = braName;
     }
     
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "brand")
     public Set<Products> getProduct(){
-    	return product;
+    	return products;
     }
     
-    public void setProduct(Set<Products> product) {
-    	this.product = product;
+    public void setProduct(Set<Products> products) {
+    	this.products = products;
     }
     
 }
