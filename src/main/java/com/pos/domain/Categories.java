@@ -19,6 +19,7 @@ import javax.persistence.UniqueConstraint;
 public class Categories implements java.io.Serializable {
     private int catId;
     private String catName;
+    private boolean catActive;
     private Set<Products> products = new HashSet<Products>(0);
 
     @Id
@@ -41,7 +42,16 @@ public class Categories implements java.io.Serializable {
         this.catName = catName;
     }
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    @Column(name = "cat_active")
+    public boolean getCatActive(){
+    	return catActive;
+    }
+    
+    public void setCatActive(boolean catActive){
+    	this.catActive = catActive;
+    }
+    
+    @OneToMany(mappedBy = "category")
     public Set<Products> getProduct(){
     	return products;
     }

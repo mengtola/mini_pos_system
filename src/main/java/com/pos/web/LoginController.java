@@ -32,6 +32,7 @@ public class LoginController {
 		if( user != null) {
 			System.out.println("login success");
 			request.getSession().setAttribute("UserId",user.getUserId());
+			request.getSession().setAttribute("UserName",user.getName());
 			response.sendRedirect("/");
 			
 		}

@@ -257,7 +257,7 @@
                        <li class="dropdown">
                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                <img src="../../../assets/images/avatar-mini.png" alt="">
-                               <span class="username">Administration</span>
+                               <span class="username"><%=session.getAttribute("UserName")%></span>
                                <b class="caret"></b>
                            </a>
                            <ul class="dropdown-menu extended logout">
@@ -283,20 +283,26 @@
          <!-- BEGIN SIDEBAR MENU -->
           <ul class="sidebar-menu">
               <li class="sub-menu active">
-                  <a class="" href="">
+                  <a class="" href="/">
                       <i class="icon-dashboard"></i>
                       <span>Dashboard</span>
                   </a>
               </li>
-			  <li class="sub-menu active">
-                  <a class="" href="">
-                      <i class="icon-dashboard"></i>
+			  <li class="sub-menu">
+                  <a href="javascript:;" class="">
+                      <i class="icon-money"></i>
                       <span>Sale</span>
+                      <span class="arrow"></span>
                   </a>
+                  <ul class="sub">
+                      <li><a class="" href="/sale.html">Sale List</a></li>
+                      <li><a class="" href="/sale/add.html">Add New</a></li>
+                      
+                  </ul>
               </li>
               <li class="sub-menu">
                   <a href="javascript:;" class="">
-                      <i class="icon-film"></i>
+                      <i class="icon-male"></i>
                       <span>Customer</span>
                       <span class="arrow"></span>
                   </a>
@@ -308,7 +314,7 @@
               </li>
 			  <li class="sub-menu">
                   <a href="javascript:;" class="">
-                      <i class="icon-film"></i>
+                      <i class="icon-gift"></i>
                       <span>Products</span>
                       <span class="arrow"></span>
                   </a>
@@ -320,7 +326,7 @@
               </li>
               <li class="sub-menu">
                   <a href="javascript:;" class="">
-                      <i class="icon-film"></i>
+                      <i class="icon-reorder"></i>
                       <span>Categories</span>
                       <span class="arrow"></span>
                   </a>
@@ -332,7 +338,7 @@
               </li>
 			  <li class="sub-menu">
                   <a href="javascript:;" class="">
-                      <i class="icon-film"></i>
+                      <i class="icon-file"></i>
                       <span>Brands</span>
                       <span class="arrow"></span>
                   </a>
@@ -344,7 +350,7 @@
               </li>  
 			  <li class="sub-menu">
                   <a href="javascript:;" class="">
-                      <i class="icon-user"></i>
+                      <i class="icon-group"></i>
                       <span>Users</span>
                       <span class="arrow"></span>
                   </a>
@@ -385,22 +391,8 @@
 			   <!-- END THEME CUSTOMIZER-->
 			  <!-- BEGIN PAGE TITLE & BREADCRUMB-->
 			   <h3 class="page-title">
-				 Dashboard
+				 ${dashboard}
 			   </h3>
-			   <ul class="breadcrumb">
-				   <li>
-					   <a href="#">Home</a>
-					   <span class="divider">/</span>
-				   </li>
-				   <li>
-					   <a href="#">Metro Lab</a>
-					   <span class="divider">/</span>
-				   </li>
-				   <li class="active">
-					   Dashboard
-				   </li>
-				
-			   </ul>
 			   <!-- END PAGE TITLE & BREADCRUMB-->
 		   </div>
 		</div>

@@ -14,7 +14,7 @@
 			</div>
 			<div style="display: block;" class="widget-body">
 				<!-- BEGIN FORM-->
-	 		    <form:form method="POST" action = "/category/add.html" modelAttribute="categories">
+	 		    <form:form method="POST" action = "" modelAttribute="categories">
 				<div class="control-group">
 					<label class="control-label">Category Name</label>
 					<div class="controls">

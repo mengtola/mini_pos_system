@@ -40,6 +40,10 @@
    	<filter-name>auth</filter-name>
    	<url-pattern>/product/add.html</url-pattern>
    </filter-mapping>
+    <filter-mapping>
+   	<filter-name>auth</filter-name>
+   	<url-pattern>/product/edit/*.html</url-pattern>
+   </filter-mapping>
    <filter-mapping>
    	<filter-name>auth</filter-name>
    	<url-pattern>/category.html</url-pattern>
@@ -48,6 +52,10 @@
    	<filter-name>auth</filter-name>
    	<url-pattern>/category/add.html</url-pattern>
    </filter-mapping>
+    <filter-mapping>
+   	<filter-name>auth</filter-name>
+   	<url-pattern>/category/edit/*.html</url-pattern>
+   </filter-mapping>
    <filter-mapping>
    	<filter-name>auth</filter-name>
    	<url-pattern>/brand.html</url-pattern>
@@ -55,6 +63,10 @@
     <filter-mapping>
    	<filter-name>auth</filter-name>
    	<url-pattern>/brand/add.html</url-pattern>
+   </filter-mapping>
+    <filter-mapping>
+   	<filter-name>auth</filter-name>
+   	<url-pattern>/brand/edit/*.html</url-pattern>
    </filter-mapping>
    <filter-mapping>
    	<filter-name>auth</filter-name>
@@ -66,11 +78,7 @@
    </filter-mapping>
    <filter-mapping>
    	<filter-name>auth</filter-name>
-   	<url-pattern>/product.html</url-pattern>
-   </filter-mapping>
-    <filter-mapping>
-   	<filter-name>auth</filter-name>
-   	<url-pattern>/product/add.html</url-pattern>
+   	<url-pattern>/customer/edit/*.html</url-pattern>
    </filter-mapping>
    <filter-mapping>
    	<filter-name>auth</filter-name>
@@ -79,6 +87,10 @@
     <filter-mapping>
    	<filter-name>auth</filter-name>
    	<url-pattern>/sale/add.html</url-pattern>
+   </filter-mapping>
+   <filter-mapping>
+   	<filter-name>auth</filter-name>
+   	<url-pattern>/sale/edit/*.html</url-pattern>
    </filter-mapping>
   
 </web-app>

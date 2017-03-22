@@ -38,10 +38,14 @@ public class ProductController {
 	private ConversionService conversionService;*/
 
 	@RequestMapping(value = "/product", method = RequestMethod.GET)
-	public ModelAndView index(){
+	public ModelAndView index(Model model, Integer offset, Integer maxResults,Map<String,Object> map){
+		model.addAttribute("pro_list", dao.list(offset, maxResults));
+		model.addAttribute("count", dao.count());
+		model.addAttribute("offset", offset);
 		
+		map.put("dashboard","Product");
 		
-		return new ModelAndView("product/index","pro_list",dao.list());
+		return new ModelAndView("product/index");
 	}
 	
 	@RequestMapping(value = "/product/add", method = RequestMethod.GET)
@@ -53,11 +57,13 @@ public class ProductController {
 		
 		map.put("category_list", category_list);
 		map.put("brand_list", brand_list);
-		return new ModelAndView("product/add");
+		
+		map.put("dashboard","Product");
+		return new ModelAndView("product/edit");
 	}
 	
 	@RequestMapping(value = "/product/add", method = RequestMethod.POST)
-	public ModelAndView add(@ModelAttribute Products products,HttpServletRequest request,HttpServletResponse response,BindingResult bindingResult, Model model) throws IOException{
+	public ModelAndView add(@ModelAttribute Products products,HttpServletRequest request,HttpServletResponse response,BindingResult bindingResult, Model model,Map<String,Object> map) throws IOException{
 		 
 		if (bindingResult.hasErrors()) {
 			 if (dao.addProduct(products) != null) {
@@ -65,8 +71,8 @@ public class ProductController {
 				}
 	      }
 
-		
-		return new ModelAndView("product/add");
+		map.put("dashboard","Product");
+		return new ModelAndView("product/edit");
 	}
 	
 	/*@InitBinder("Categories")

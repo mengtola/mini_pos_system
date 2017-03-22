@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,10 +25,13 @@ public class Products implements java.io.Serializable {
     private String proName;
     private String proCode;
     private int qty;
-    private int unitPrice;
+    private int stockPrice;
+    private int salePrice;
     private boolean proStatus;
+    private boolean proActive;
     private Categories category;
     private Brands brand;
+    private Set<Sales> sales = new HashSet<Sales>(0);
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -64,13 +71,22 @@ public class Products implements java.io.Serializable {
     	this.qty = qty;
     }
     
-    @Column(name = "unit_price")  
-    public int getUnitPrice(){
-    	return unitPrice;
+    @Column(name = "stock_price")  
+    public int getStockPrice(){
+    	return stockPrice;
     }
     
-    public void setUnitPrice(int unitPrice){
-    	this.unitPrice = unitPrice;
+    public void setStockPrice(int stockPrice){
+    	this.stockPrice = stockPrice;
+    }
+    
+    @Column(name = "sale_price")  
+    public int getSalePrice(){
+    	return salePrice;
+    }
+    
+    public void setSalePrice(int salePrice){
+    	this.salePrice = salePrice;
     }
     
     @Column(name = "pro_status")
@@ -82,7 +98,7 @@ public class Products implements java.io.Serializable {
     	this.proStatus = proStatus;
     }
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "cat_id", nullable= false)
     public Categories getCategory(){
     	return category;
@@ -92,7 +108,7 @@ public class Products implements java.io.Serializable {
     	this.category = category;
     }
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "bra_id", nullable= false)
     public Brands getBrand(){
     	return brand;
@@ -101,5 +117,23 @@ public class Products implements java.io.Serializable {
     public void setBrand(Brands brand){
     	this.brand = brand;
     }
+    
+    @OneToMany(mappedBy = "product")
+    public Set<Sales> getSale(){
+    	return sales;
+    }
+    
+    public void setSale(Set<Sales> sales){
+    	this.sales = sales;
+    }
+
+    @Column(name = "pro_active")
+	public boolean getProActive() {
+		return proActive;
+	}
+
+	public void setProActive(boolean proActive) {
+		this.proActive = proActive;
+	}
 }
 

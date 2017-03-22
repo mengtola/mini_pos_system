@@ -6,7 +6,7 @@
 <div class="row-fluid">
 	  		<div class="widget blue">
 			<div class="widget-title">
-				<h4><i class="icon-reorder"></i> Add Brand </h4>
+				<h4><i class="icon-reorder"></i> Add Customer </h4>
 				<span class="tools">
 				<a href="javascript:;" class="icon-chevron-down"></a>
 				<a href="javascript:;" class="icon-remove"></a>
@@ -14,11 +14,18 @@
 			</div>
 			<div style="display: block;" class="widget-body">
 				<!-- BEGIN FORM-->
-	 		    <form:form method="POST" action = "/brand/add.html" modelAttribute="brands">
+	 		    <form:form method="POST" action = "" modelAttribute="customers">
 				<div class="control-group">
-					<label class="control-label">Brand Name</label>
+					<label class="control-label">Customer Name</label>
 					<div class="controls">
-						<form:input path="braName"/>
+						<form:input path="cusName"/>
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">Customer Phone</label>
+					<div class="controls">
+						<form:input path="cusPhone"/>
 						<span class="help-inline"></span>
 					</div>
 				</div>

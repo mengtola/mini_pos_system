@@ -16,5 +16,6 @@
     <mapping class="com.pos.domain.Brands" />
     <mapping class="com.pos.domain.Products" />
     <mapping class="com.pos.domain.Customers" />
+    <mapping class="com.pos.domain.Sales" />
 </session-factory>
 </hibernate-configuration>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="tag" uri="/WEB-INF/taglibs/customTaglib.tld"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../header.jsp"/>
 
@@ -41,17 +42,18 @@
 				 <tbody>
 				 	<c:forEach var="item" items="${cat_list}" varStatus="key">
 		  				<tr>
-		  					<td>${key.index + 1}</td>
+		  					<td>${offset + key.index +1 }</td>
 		  					<td>${item.getCatName()}</td>
-		  					<td></td>
+		  					<td style="text-align:center;width:8%;"><a href="/category/edit/${item.getCatId()}.html"><i class="icon-edit" style="font-size:18px;color:#e74955;"></i></a></td>
 		  				</tr>
 		  			</c:forEach>
                		
 				 </tbody>
 			 </table>
+			 
 		 </div>
          <div class="dataTables_paginate paging_bootstrap pagination">
-  			
+  			<tag:paginate max="15" offset="${offset}" count="${count}" uri="/category.html" next="&raquo;" previous="&laquo;" />
          </div>
          <div style="clear:both;"></div>
 		</div>

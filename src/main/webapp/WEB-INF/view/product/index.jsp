@@ -1,3 +1,4 @@
+<%@ taglib prefix="tag" uri="/WEB-INF/taglibs/customTaglib.tld"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../header.jsp"/>
 
@@ -34,16 +35,30 @@
 				 <thead>
 				 <tr>
 					 <th>No</th>
-					 <th>Brand Name</th>
+					 <th>Product Code</th>
+					 <th>Product Name</th>					 
+					 <th>Category</th>
+					 <th>Brand</th>
+					 <th>Quantity</th>
+					 <th>Stock Price</th>
+					 <th>Sale Price</th>
+					 <th>Status</th>
 					 <th></th>
 				 </tr>
 				 </thead>
 				 <tbody>
-				 	<c:forEach var="item" items="${bra_list}" varStatus="key">
+				 	<c:forEach var="item" items="${pro_list}" varStatus="key">
 		  				<tr>
-		  					<td>${key.index + 1}</td>
-		  					<td>${item.getBraName()}</td>
-		  					<td></td>
+		  					<td>${offset + key.index +1 }</td>
+		  					<td>${item.getProCode()}</td>
+		  					<td>${item.getProName()}</td>
+		  					<td>${item.getCategory().getCatName()}</td>
+		  					<td>${item.getBrand().getBraName()}</td>
+		  					<td>${item.getQty()}</td>
+		  					<td>${item.getStockPrice()}</td>
+		  					<td>${item.getSalePrice()}</td>
+		  					<td>${item.getProStatus()}</td>
+		  					<td style="text-align:center;width:8%;"><a href="/product/edit/${item.getProId()}.html"><i class="icon-edit" style="font-size:18px;color:#e74955;"></i></a></td>
 		  				</tr>
 		  			</c:forEach>
                		
@@ -51,7 +66,7 @@
 			 </table>
 		 </div>
          <div class="dataTables_paginate paging_bootstrap pagination">
-  			
+  			<tag:paginate max="15" offset="${offset}" count="${count}" uri="/product.html" next="&raquo;" previous="&laquo;" />
          </div>
          <div style="clear:both;"></div>
 		</div>
@@ -60,7 +75,7 @@
 <script>
 	$(function(){
 		$("#editable_new").click(function(){
-			window.location="/brand/add.html";
+			window.location="/product/add.html";
 		});
 	});
 </script>

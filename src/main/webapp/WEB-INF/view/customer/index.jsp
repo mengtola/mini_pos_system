@@ -1,3 +1,4 @@
+<%@ taglib prefix="tag" uri="/WEB-INF/taglibs/customTaglib.tld"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../header.jsp"/>
 
@@ -42,10 +43,10 @@
 				 <tbody>
 				 	<c:forEach var="item" items="${cus_list}" varStatus="key">
 		  				<tr>
-		  					<td>${key.index + 1}</td>
+		  					<td>${offset + key.index +1 }</td>
 		  					<td>${item.getCusName()}</td>
 		  					<td>${item.getCusPhone()}</td>
-		  					<td></td>
+		  					<td style="text-align:center;width:8%;"><a href="/customer/edit/${item.getCusId()}.html"><i class="icon-edit" style="font-size:18px;color:#e74955;"></i></a></td>
 		  				</tr>
 		  			</c:forEach>
                		
@@ -53,7 +54,7 @@
 			 </table>
 		 </div>
          <div class="dataTables_paginate paging_bootstrap pagination">
-  			
+  			<tag:paginate max="15" offset="${offset}" count="${count}" uri="/customer.html" next="&raquo;" previous="&laquo;" />
          </div>
          <div style="clear:both;"></div>
 		</div>

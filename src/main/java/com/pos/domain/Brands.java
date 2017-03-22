@@ -20,6 +20,7 @@ import javax.persistence.UniqueConstraint;
 public class Brands implements java.io.Serializable {
     private int braId;
     private String braName;
+    private boolean braActive;
     private Set<Products> products = new HashSet<Products>(0);
 
     @Id
@@ -42,7 +43,16 @@ public class Brands implements java.io.Serializable {
         this.braName = braName;
     }
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "brand")
+    @Column(name = "bra_active")
+    public boolean getBraActive(){
+    	return braActive;
+    }
+    
+    public void setBraActive(boolean braActive){
+    	this.braActive = braActive;
+    }
+    
+    @OneToMany(mappedBy = "brand")
     public Set<Products> getProduct(){
     	return products;
     }

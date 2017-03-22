@@ -2,13 +2,17 @@ package com.pos.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.pos.config.*;
 import com.pos.domain.Brands;
+import com.pos.domain.Categories;
 
 @Repository
 public class BrandDao {
@@ -17,7 +21,7 @@ public class BrandDao {
 	        Session session = null;
 	        try {
 	            session = HibernateUtil.getSession();
-	            Query query = session.createQuery("from Brands b");
+	            Query query = session.createQuery("from Brands b where b.braActive = 1");
 	 
 	            List queryList = query.list();
 	            if (queryList != null && queryList.isEmpty()) {
@@ -32,6 +36,24 @@ public class BrandDao {
 	        } finally {
 	            session.close();
 	        }
+	}
+	 
+	@SuppressWarnings("unchecked")
+	@Transactional
+	 public List<Brands> list(Integer offset, Integer maxResults){
+		return HibernateUtil.getSession()
+				.createCriteria(Brands.class)
+				.setFirstResult(offset!=null?offset:0)
+				.setMaxResults(maxResults!=null?maxResults:10)
+				.list();
+	}
+	
+	
+	public Long count(){
+		return (Long)HibernateUtil.getSession()
+				.createCriteria(Brands.class)
+				.setProjection(Projections.rowCount())
+				.uniqueResult();
 	}
 	 
 	 public Brands findBrandById(int id) {
@@ -57,10 +79,13 @@ public class BrandDao {
 	 
 	    public void updateBrand(Brands brand) {
 	        Session session = null;
+	        Transaction transaction = null;
 	        try {
 	            session = HibernateUtil.getSession();
+	            transaction = session.beginTransaction();
 	            session.saveOrUpdate(brand);
 	            session.flush();
+	            transaction.commit();
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        } finally {

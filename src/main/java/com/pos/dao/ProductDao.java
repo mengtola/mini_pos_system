@@ -2,12 +2,16 @@ package com.pos.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.pos.config.*;
+import com.pos.domain.Categories;
 import com.pos.domain.Products;
 
 @Repository
@@ -17,7 +21,7 @@ public class ProductDao {
 	        Session session = null;
 	        try {
 	            session = HibernateUtil.getSession();
-	            Query query = session.createQuery("from Products b");
+	            Query query = session.createQuery("from Products p where p.proActive = 1");
 	 
 	            List queryList = query.list();
 	            if (queryList != null && queryList.isEmpty()) {
@@ -33,6 +37,25 @@ public class ProductDao {
 	            session.close();
 	        }
 	}
+	 
+	@SuppressWarnings("unchecked")
+	@Transactional
+	 public List<Products> list(Integer offset, Integer maxResults){
+		return HibernateUtil.getSession()
+				.createCriteria(Products.class)
+				.setFirstResult(offset!=null?offset:0)
+				.setMaxResults(maxResults!=null?maxResults:10)
+				.list();
+	}
+	
+	
+	public Long count(){
+		return (Long)HibernateUtil.getSession()
+				.createCriteria(Products.class)
+				.setProjection(Projections.rowCount())
+				.uniqueResult();
+	}
+		
 	 
 	 public Products findBrandById(int id) {
 	        Session session = null;

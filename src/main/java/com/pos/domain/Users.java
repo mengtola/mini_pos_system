@@ -2,6 +2,9 @@
 package com.pos.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,6 +28,7 @@ public class Users implements java.io.Serializable {
     private boolean active;
     private Date regDate;
     private Date lastLogin;
+    private Set<Sales> sales = new HashSet<Sales>(0);
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -97,5 +101,14 @@ public class Users implements java.io.Serializable {
     
     public void setlastLogin(Date lastLogin){
     	this.lastLogin = lastLogin;
+    }
+    
+    @OneToMany(mappedBy = "user")
+    public Set<Sales> getSale(){
+    	return sales;
+    }
+    
+    public void setSale(Set<Sales> sales){
+    	this.sales = sales;
     }
 }

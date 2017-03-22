@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -18,6 +22,7 @@ public class Customers implements java.io.Serializable {
     private int cusId;
     private String cusName;
     private String cusPhone;
+    private Set<Sales> sales = new HashSet<Sales>(0);
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -46,5 +51,13 @@ public class Customers implements java.io.Serializable {
     
     public void setCusPhone(String cusPhone) {
     	this.cusPhone = cusPhone;
+    }
+    @OneToMany(mappedBy = "customer")
+    public Set<Sales> getSale(){
+    	return sales;
+    }
+    
+    public void setSale(Set<Sales> sales){
+    	this.sales = sales;
     }
 }
