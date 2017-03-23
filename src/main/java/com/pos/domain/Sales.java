@@ -20,9 +20,12 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "sales", catalog="mini_pos_system")
 public class Sales implements java.io.Serializable {
     private int saleId;
+    private int proId;
     private int salePrice;
     private int saleQty;
     private Date saleDate;
+    private int cusId;
+    private int userId;
     private Date userEdit;
     private Products product;
     private Customers customer;
@@ -107,6 +110,33 @@ public class Sales implements java.io.Serializable {
     public void setUser(Users user){
     	this.user = user;
     }
+
+    @Column(name = "pro_id", insertable = false, updatable = false)
+	public int getProId() {
+		return proId;
+	}
+
+	public void setProId(int proId) {
+		this.proId = proId;
+	}
+
+	@Column(name = "cus_id", insertable = false, updatable = false)
+	public int getCusId() {
+		return cusId;
+	}
+
+	public void setCusId(int cusId) {
+		this.cusId = cusId;
+	}
+
+	@Column(name = "user_id", insertable = false, updatable = false)
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
     
 }

@@ -6,7 +6,7 @@
 <div class="row-fluid">
 	<div class="widget blue">
 		<div class="widget-title">
-			<h4><i class="icon-reorder"></i> All Brands</h4>
+			<h4><i class="icon-reorder"></i> All Products</h4>
 			<span class="tools">
 			<a href="javascript:;" class="icon-chevron-down"></a>
 			<a href="javascript:;" class="icon-remove"></a>
@@ -57,7 +57,18 @@
 		  					<td>${item.getQty()}</td>
 		  					<td>${item.getStockPrice()}</td>
 		  					<td>${item.getSalePrice()}</td>
-		  					<td>${item.getProStatus()}</td>
+		  					<td>
+		  						<c:choose>
+		  							<c:when test="${item.getProStatus() eq false}">
+										<c:set var="status" value="Used"/>
+									</c:when>
+									<c:otherwise>
+										<c:set var="status" value="New"/>
+									</c:otherwise>
+								</c:choose>
+							   ${status }
+		  						
+		  					</td>
 		  					<td style="text-align:center;width:8%;"><a href="/product/edit/${item.getProId()}.html"><i class="icon-edit" style="font-size:18px;color:#e74955;"></i></a></td>
 		  				</tr>
 		  			</c:forEach>

@@ -17,11 +17,11 @@
 				<!-- BEGIN FORM-->
 	 		    <form:form method="POST" action = "" modelAttribute="sales">
 	 		    <div class="span12">
-		 		    <div class="span6">
+		 		    <div class="span4">
 						<div class="control-group">
 							<label class="control-label">Product</label>
 							<div class="controls">
-								<sf:select path="product">
+								<sf:select path="proId">
 									<sf:options items="${product_list}" itemValue="proId" itemLabel="proName"></sf:options>
 								</sf:select>
 								<span class="help-inline"></span>
@@ -38,7 +38,7 @@
 						
 						
 					</div>
-					<div class="span6">
+					<div class="span4">
 						<div class="control-group">
 							<label class="control-label">Quantity</label>
 							<div class="controls">
@@ -50,13 +50,16 @@
 						<div class="control-group">
 							<label class="control-label">Customer</label>
 							<div class="controls">
-								<sf:select path="customer">
+								<sf:select path="cusId">
 									<sf:options items="${customer_list}" itemValue="cusId" itemLabel="cusName"></sf:options>
 								</sf:select>
 								<span class="help-inline"></span>
 							</div>
 						</div>
 			
+					</div>
+					<div class="span4">
+					
 					</div>
 				</div>
 				<div class="form-actions" style="clear:both;">

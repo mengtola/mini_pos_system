@@ -45,6 +45,7 @@ public class BrandController {
 	@RequestMapping(value = "/brand/add", method = RequestMethod.POST)
 	public ModelAndView add(@ModelAttribute Brands brands,HttpServletRequest request,HttpServletResponse response,Map<String,Object> map) throws IOException{
 		
+		brands.setBraActive(true);
 		if (dao.addBrand(brands) != null) {
 			response.sendRedirect("/brand.html");
 		}
@@ -67,6 +68,7 @@ public class BrandController {
 		
 		Brands tbl = dao.findBrandById(id);
 		tbl.setBraName(brands.getBraName());
+		tbl.setBraActive(true);
 		
 		dao.updateBrand(tbl);
 		response.sendRedirect("/brand.html");

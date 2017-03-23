@@ -17,11 +17,11 @@
 				<!-- BEGIN FORM-->
 	 		    <form:form method="POST" action = "" modelAttribute="products">
 	 		    <div class="span12">
-		 		    <div class="span6">
+		 		    <div class="span4">
 						<div class="control-group">
 							<label class="control-label">Category</label>
 							<div class="controls">
-								<sf:select path="category">
+								<sf:select path="catId">
 									<sf:options items="${category_list}" itemValue="catId" itemLabel="catName"></sf:options>
 								</sf:select>
 								<span class="help-inline"></span>
@@ -30,7 +30,7 @@
 						<div class="control-group">
 							<label class="control-label">Brand</label>
 							<div class="controls">
-								<sf:select path="brand">
+								<sf:select path="braId">
 									<sf:options items="${brand_list}" itemValue="braId" itemLabel="braName"></sf:options>
 								</sf:select>
 								<span class="help-inline"></span>
@@ -42,10 +42,10 @@
 								<form:input path="proName"/>
 								<span class="help-inline"></span>
 							</div>
-						</div>
+						</div>	
 						
 					</div>
-					<div class="span6">
+					<div class="span4">
 						<div class="control-group">
 							<label class="control-label">Qty</label>
 							<div class="controls">
@@ -60,10 +60,22 @@
 								<span class="help-inline"></span>
 							</div>
 						</div>
+						
+					</div>
+					<div class="span4">
 						<div class="control-group">
 							<label class="control-label">Sale Price</label>
 							<div class="controls">
 								<form:input path="salePrice"/>
+								<span class="help-inline"></span>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">Status</label>
+							<div class="controls">
+								<sf:select path="proStatus">
+									<sf:options items="${prostatuslist}"></sf:options>
+								</sf:select>
 								<span class="help-inline"></span>
 							</div>
 						</div>

@@ -45,6 +45,7 @@ public class CategoryController {
 	@RequestMapping(value = "/category/add", method = RequestMethod.POST)
 	public ModelAndView add(@ModelAttribute Categories categories,HttpServletRequest request,HttpServletResponse response,Map<String,Object> map) throws IOException{
 		
+		categories.setCatActive(true);
 		if (dao.addCategory(categories) != null) {
 			response.sendRedirect("/category.html");
 		}
@@ -66,6 +67,7 @@ public class CategoryController {
 		
 		Categories tbl = dao.findCategoryById(id);
 		tbl.setCatName(categories.getCatName());
+		tbl.setCatActive(true);
 		
 		dao.updateCategory(tbl);
 		response.sendRedirect("/category.html");

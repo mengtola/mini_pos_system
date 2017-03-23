@@ -22,6 +22,8 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "products", catalog="mini_pos_system")
 public class Products implements java.io.Serializable {
     private int proId;
+    private int catId;
+    private int braId;
     private String proName;
     private String proCode;
     private int qty;
@@ -134,6 +136,24 @@ public class Products implements java.io.Serializable {
 
 	public void setProActive(boolean proActive) {
 		this.proActive = proActive;
+	}
+
+	@Column(name = "cat_id", insertable = false, updatable = false)
+	public int getCatId() {
+		return catId;
+	}
+
+	public void setCatId(int catId) {
+		this.catId = catId;
+	}
+
+	@Column(name = "bra_id", insertable = false, updatable = false)
+	public int getBraId() {
+		return braId;
+	}
+
+	public void setBraId(int braId) {
+		this.braId = braId;
 	}
 }
 

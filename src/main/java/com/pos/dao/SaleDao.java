@@ -77,12 +77,15 @@ public class SaleDao {
 	        }
 	    }
 	 
-	    public void updateProduct(Sales sale) {
+	    public void updateSale(Sales sale) {
 	        Session session = null;
+	        Transaction transaction = null;
 	        try {
 	            session = HibernateUtil.getSession();
+	            transaction = session.beginTransaction();
 	            session.saveOrUpdate(sale);
 	            session.flush();
+	            transaction.commit();
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        } finally {

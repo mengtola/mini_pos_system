@@ -52,6 +52,7 @@ public class Customers implements java.io.Serializable {
     public void setCusPhone(String cusPhone) {
     	this.cusPhone = cusPhone;
     }
+    
     @OneToMany(mappedBy = "customer")
     public Set<Sales> getSale(){
     	return sales;

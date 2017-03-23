@@ -57,7 +57,7 @@ public class ProductDao {
 	}
 		
 	 
-	 public Products findBrandById(int id) {
+	 public Products findProductById(int id) {
 	        Session session = null;
 	        try {
 	            session = HibernateUtil.getSession();
@@ -80,10 +80,13 @@ public class ProductDao {
 	 
 	    public void updateProduct(Products product) {
 	        Session session = null;
+	        Transaction transaction = null;
 	        try {
 	            session = HibernateUtil.getSession();
+	            transaction = session.beginTransaction();
 	            session.saveOrUpdate(product);
 	            session.flush();
+	            transaction.commit();
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        } finally {
