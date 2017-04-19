@@ -35,10 +35,6 @@
 				 <thead>
 				 <tr>
 					 <th>No</th>
-					 <th>Product Name</th>
-					 <th>Product Code</th>
-					 <th>Sale Price</th>
-					 <th>Sale Quantity</th>
 					 <th>Customer Name</th>
 					 <th>Customer Phone</th>
 					 <th>Sale Date</th>
@@ -50,10 +46,6 @@
 				 	<c:forEach var="item" items="${sale_list}" varStatus="key">
 		  				<tr>
 		  					<td>${offset + key.index +1 }</td>
-		  					<td>${item.getProduct().getProName()}</td>
-		  					<td>${item.getProduct().getProCode()}</td>
-		  					<td>${item.getSalePrice()}</td>
-		  					<td>${item.getSaleQty()}</td>
 		  					<td>${item.getCustomer().getCusName()}</td>
 		  					<td>${item.getCustomer().getCusPhone()}</td>
 		  					<td>${item.getSaleDate()}</td>

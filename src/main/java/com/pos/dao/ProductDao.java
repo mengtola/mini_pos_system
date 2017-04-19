@@ -78,6 +78,27 @@ public class ProductDao {
 	        }
 	    }
 	 
+	 public Products findProductByCode(String code) {
+	        Session session = null;
+	        try {
+	            session = HibernateUtil.getSession();
+	            Query query = session.createQuery("from Products p where p.proCode = :code");
+	            query.setParameter("code", code);
+	 
+	            List queryList = query.list();
+	            if (queryList != null && queryList.isEmpty()) {
+	                return null;
+	            } else {
+	                return (Products) queryList.get(0);
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            return null;
+	        } finally {
+	            session.close();
+	        }
+	    }
+	 
 	    public void updateProduct(Products product) {
 	        Session session = null;
 	        Transaction transaction = null;

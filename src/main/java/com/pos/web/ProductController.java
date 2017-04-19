@@ -98,8 +98,6 @@ public class ProductController {
 	public ModelAndView edit(@PathVariable("id") int id, @ModelAttribute Products products,HttpServletRequest request,HttpServletResponse response, Model model, Map<String,Object> map) throws IOException{
 		 
 		Products tbl = dao.findProductById(id);
-		tbl.setCatId(products.getCatId());
-		tbl.setBraId(products.getBraId());
 		tbl.setProName(products.getProName());
 		tbl.setQty(products.getQty());
 		tbl.setStockPrice(products.getStockPrice());

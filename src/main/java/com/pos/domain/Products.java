@@ -33,7 +33,7 @@ public class Products implements java.io.Serializable {
     private boolean proActive;
     private Categories category;
     private Brands brand;
-    private Set<Sales> sales = new HashSet<Sales>(0);
+    private Set<SaleDetails> saleDetails = new HashSet<SaleDetails>(0);
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -121,12 +121,12 @@ public class Products implements java.io.Serializable {
     }
     
     @OneToMany(mappedBy = "product")
-    public Set<Sales> getSale(){
-    	return sales;
+    public Set<SaleDetails> getSaleDetail(){
+    	return saleDetails;
     }
     
-    public void setSale(Set<Sales> sales){
-    	this.sales = sales;
+    public void setSaleDetail(Set<SaleDetails> saleDetails){
+    	this.saleDetails = saleDetails;
     }
 
     @Column(name = "pro_active")

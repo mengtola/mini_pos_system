@@ -7,26 +7,26 @@
 	  		<div class="widget blue">
 			<div class="widget-title">
 				<h4><i class="icon-reorder"></i> Add Customer </h4>
-				<span class="tools">
-				<a href="javascript:;" class="icon-chevron-down"></a>
-				<a href="javascript:;" class="icon-remove"></a>
-				</span>
+				<div class="tools">
+                   <a class="collapse" href="javascript:;"></a>
+                   <a class="config" href="#portlet-config" data-toggle="modal"></a>
+                   <a class="reload" href="javascript:;"></a>
+                   <a class="remove" href="javascript:;"></a>
+               </div>
 			</div>
 			<div style="display: block;" class="widget-body">
 				<!-- BEGIN FORM-->
-	 		    <form:form method="POST" action = "" modelAttribute="customers">
+	 		    <form:form method="POST" action = "" modelAttribute="customers"  class="cmxform form-horizontal">
 				<div class="control-group">
 					<label class="control-label">Customer Name</label>
 					<div class="controls">
-						<form:input path="cusName"/>
-						<span class="help-inline"></span>
+						<form:input path="cusName"  class="span4"/>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label">Customer Phone</label>
 					<div class="controls">
-						<form:input path="cusPhone"/>
-						<span class="help-inline"></span>
+						<form:input path="cusPhone"  class="span4"/>
 					</div>
 				</div>
 	

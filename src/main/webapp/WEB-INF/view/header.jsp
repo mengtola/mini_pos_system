@@ -16,6 +16,7 @@
    <link href="../../../assets/css/style.css" rel="stylesheet" />
    <link href="../../../assets/css/style-responsive.css" rel="stylesheet" />
    <link href="../../../assets/css/style-default.css" rel="stylesheet" id="style_color" />
+   <link rel="stylesheet" href="../../../assets/plugin/data-tables/DT_bootstrap.css" />
    
       <script src="../../../assets/js/jquery-1.8.3.min.js"></script>
 

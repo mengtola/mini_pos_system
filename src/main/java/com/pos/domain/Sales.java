@@ -1,6 +1,9 @@
 /***/
 package com.pos.domain;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,16 +23,13 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "sales", catalog="mini_pos_system")
 public class Sales implements java.io.Serializable {
     private int saleId;
-    private int proId;
-    private int salePrice;
-    private int saleQty;
     private Date saleDate;
     private int cusId;
     private int userId;
     private Date userEdit;
-    private Products product;
     private Customers customer;
     private Users user;
+    private Set<SaleDetails> saleDetails = new HashSet<SaleDetails>(0);
     
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -42,24 +42,6 @@ public class Sales implements java.io.Serializable {
     	this.saleId = saleId;
     }
     
-    @Column(name = "sale_price")
-    public int getSalePrice() {
-    	return salePrice;
-    }
-    
-    public void setSalePrice(int salePrice){
-    	
-    	this.salePrice = salePrice;
-    }
-    
-    @Column(name = "sale_qty")
-    public int getSaleQty(){
-    	return saleQty;
-    }
-    
-    public void setSaleQty(int saleQty){
-    	this.saleQty = saleQty;
-    }
     
     @Temporal(TemporalType.DATE)
     @Column(name = "sale_date", nullable = false)
@@ -82,16 +64,6 @@ public class Sales implements java.io.Serializable {
     }
     
     @ManyToOne()
-    @JoinColumn(name = "pro_id", nullable= false)
-    public Products getProduct(){
-    	return product;
-    }
-    
-    public void setProduct(Products product){
-    	this.product = product;
-    }
-    
-    @ManyToOne()
     @JoinColumn(name = "cus_id", nullable= false)
     public Customers getCustomer(){
     	return customer;
@@ -111,15 +83,6 @@ public class Sales implements java.io.Serializable {
     	this.user = user;
     }
 
-    @Column(name = "pro_id", insertable = false, updatable = false)
-	public int getProId() {
-		return proId;
-	}
-
-	public void setProId(int proId) {
-		this.proId = proId;
-	}
-
 	@Column(name = "cus_id", insertable = false, updatable = false)
 	public int getCusId() {
 		return cusId;
@@ -136,6 +99,15 @@ public class Sales implements java.io.Serializable {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	@OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
+	public Set<SaleDetails> getSaleDetails() {
+		return saleDetails;
+	}
+
+	public void setSaleDetails(Set<SaleDetails> saleDetails) {
+		this.saleDetails = saleDetails;
 	}
 
     

@@ -56,7 +56,7 @@ public class SaleDao {
 				.uniqueResult();
 	}
 	 
-	 public Sales findBrandById(int id) {
+	 public Sales findSaleById(int id) {
 	        Session session = null;
 	        try {
 	            session = HibernateUtil.getSession();
@@ -73,7 +73,7 @@ public class SaleDao {
 	            e.printStackTrace();
 	            return null;
 	        } finally {
-	            session.close();
+	           // session.close();
 	        }
 	    }
 	 
@@ -83,6 +83,11 @@ public class SaleDao {
 	        try {
 	            session = HibernateUtil.getSession();
 	            transaction = session.beginTransaction();
+	            
+	            Query createQuery = session.createQuery("delete from SaleDetails s where s.saleId =:id");
+	            createQuery.setParameter("id", sale.getSaleId());
+	            createQuery.executeUpdate();
+	            
 	            session.saveOrUpdate(sale);
 	            session.flush();
 	            transaction.commit();

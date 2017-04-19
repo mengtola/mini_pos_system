@@ -1,10 +1,13 @@
 package com.pos.web;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +33,10 @@ import com.pos.dao.SaleDao;
 import com.pos.dao.UserDao;
 import com.pos.domain.Customers;
 import com.pos.domain.Products;
+import com.pos.domain.SaleDetails;
 import com.pos.domain.Sales;
+import com.post.model.SaleAdd;
+import com.post.model.SaleProduct;
 
 @Controller
 public class SaleController {
@@ -48,12 +54,12 @@ public class SaleController {
 		model.addAttribute("offset", offset);
 		
 		map.put("dashboard","Sale");
-		return new ModelAndView("sale/index","sale_list",dao.list());
+		return new ModelAndView("sale/index");
 	}
 	
 	@RequestMapping(value = "/sale/add", method = RequestMethod.GET)
 	public ModelAndView add(Model model,Map<String,Object> map){
-		model.addAttribute("sales",new Sales());
+		model.addAttribute("saleadd",new SaleAdd());
 		
 		List<Customers> customer_list = new CustomerDao().list();
 		List<Products> product_list = new ProductDao().list();
@@ -66,19 +72,33 @@ public class SaleController {
 	}
 	
 	@RequestMapping(value = "/sale/add", method = RequestMethod.POST)
-	public ModelAndView add(@ModelAttribute Sales sales,HttpServletRequest request,HttpServletResponse response,Model model,Map<String,Object> map) throws IOException{
+	public ModelAndView add(@ModelAttribute SaleAdd saleadd,HttpServletRequest request,HttpServletResponse response,Model model,Map<String,Object> map) throws IOException{
 
-		sales.setUserId(Integer.parseInt(request.getSession(true).getAttribute("UserId").toString()));
-		sales.setProduct(new ProductDao().findProductById(sales.getProId()));
-		sales.setCustomer(new CustomerDao().findCustomerById(sales.getCusId()));
-		sales.setUser(new UserDao().findUsersById(sales.getUserId()));
-		sales.setUserEdit(new Date());
-		sales.setSaleDate(new Date());
-		if (dao.addSale(sales) != null) {
-					response.sendRedirect("/sale.html");
+		Sales sale = new Sales();
+		sale.setCustomer(new CustomerDao().findCustomerById(saleadd.getCusId()));
+		sale.setSaleDate(new Date());
+		sale.setUserEdit(new Date());
+		sale.setUser(new UserDao().findUsersById(Integer.parseInt(request.getSession(true).getAttribute("UserId").toString())));
+		
+		Set<SaleDetails> saleDetail = new HashSet<SaleDetails>();
+		for (SaleProduct saleProduct : saleadd.getSaleProduct()) {
+			SaleDetails detail = new SaleDetails();
+			ProductDao productDao = new ProductDao();
+			detail.setSale(sale);
+			detail.setProId(productDao.findProductByCode(saleProduct.getProCode()).getProId());
+			detail.setProduct(productDao.findProductById(detail.getProId()));
+			detail.setSalePrice(saleProduct.getSalePrice());
+			detail.setSaleQty(saleProduct.getSaleQty());
+			saleDetail.add(detail);
+			
 		}
-	 
-
+		
+		sale.setSaleDetails(saleDetail);
+		
+		dao.addSale(sale);
+		response.sendRedirect("/sale.html");
+		
+		
 		map.put("dashboard","Sale");
 		return new ModelAndView("sale/edit");
 	
@@ -86,7 +106,23 @@ public class SaleController {
 	
 	@RequestMapping(value = "/sale/edit/{id}", method = RequestMethod.GET)
 	public ModelAndView edit(@PathVariable("id") int id,Model model,Map<String,Object> map){
-		model.addAttribute("sales",dao.findBrandById(id));
+		Sales sales = dao.findSaleById(id);
+		SaleAdd saleAdd = new SaleAdd();
+		saleAdd.setCusId(sales.getCusId());
+	
+		ArrayList<SaleProduct> saleProductList = new ArrayList<SaleProduct>();
+		for(SaleDetails item : sales.getSaleDetails()){
+			SaleProduct saleProduct = new SaleProduct();
+			saleProduct.setProCode(item.getProduct().getProCode());
+			saleProduct.setSalePrice(item.getSalePrice());
+			saleProduct.setSaleQty(item.getSaleQty());
+			saleProductList.add(saleProduct);
+		}
+		
+		saleAdd.setSaleProduct(saleProductList);
+
+		model.addAttribute("saleadd",saleAdd);
+		model.addAttribute("saleProduct",saleProductList);
 		
 		List<Customers> customer_list = new CustomerDao().list();
 		List<Products> product_list = new ProductDao().list();
@@ -99,19 +135,29 @@ public class SaleController {
 	}
 	
 	@RequestMapping(value = "/sale/edit/{id}", method = RequestMethod.POST)
-	public ModelAndView edit(@PathVariable("id") int id,@ModelAttribute Sales sales,HttpServletRequest request,HttpServletResponse response,Model model,Map<String,Object> map) throws IOException{
+	public ModelAndView edit(@PathVariable("id") int id,@ModelAttribute SaleAdd saleadd,HttpServletRequest request,HttpServletResponse response,Model model,Map<String,Object> map) throws IOException{
 
-		Sales tbl = dao.findBrandById(id);
-		tbl.setProId(sales.getProId());
-		tbl.setSalePrice(sales.getSalePrice());
-		tbl.setSaleQty(sales.getSaleQty());
-		tbl.setCusId(sales.getCusId());
-		tbl.setUserId(Integer.parseInt(request.getSession(true).getAttribute("UserId").toString()));
+		Sales tbl = dao.findSaleById(id);
+		
+		tbl.setCustomer(new CustomerDao().findCustomerById(saleadd.getCusId()));
 		tbl.setUserEdit(new Date());
-		tbl.setProduct(new ProductDao().findProductById(sales.getProId()));
-		tbl.setCustomer(new CustomerDao().findCustomerById(sales.getCusId()));
-		tbl.setUser(new UserDao().findUsersById(tbl.getUserId()));
-
+		tbl.setUser(new UserDao().findUsersById(Integer.parseInt(request.getSession(true).getAttribute("UserId").toString())));
+		
+		Set<SaleDetails> saleDetail = new HashSet<SaleDetails>();
+		for (SaleProduct saleProduct : saleadd.getSaleProduct()) {
+			SaleDetails detail = new SaleDetails();
+			ProductDao productDao = new ProductDao();
+			detail.setSale(tbl);
+			detail.setProId(productDao.findProductByCode(saleProduct.getProCode()).getProId());
+			detail.setProduct(productDao.findProductById(detail.getProId()));
+			detail.setSalePrice(saleProduct.getSalePrice());
+			detail.setSaleQty(saleProduct.getSaleQty());
+			saleDetail.add(detail);
+			
+		}
+		
+		tbl.setSaleDetails(saleDetail);
+		
 		dao.updateSale(tbl);
 		response.sendRedirect("/sale.html");
 		

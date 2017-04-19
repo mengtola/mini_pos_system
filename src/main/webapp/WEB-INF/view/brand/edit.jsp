@@ -7,19 +7,21 @@
 	  		<div class="widget blue">
 			<div class="widget-title">
 				<h4><i class="icon-reorder"></i> Add Brand </h4>
-				<span class="tools">
-				<a href="javascript:;" class="icon-chevron-down"></a>
-				<a href="javascript:;" class="icon-remove"></a>
-				</span>
+				<div class="tools">
+                   <a class="collapse" href="javascript:;"></a>
+                   <a class="config" href="#portlet-config" data-toggle="modal"></a>
+                   <a class="reload" href="javascript:;"></a>
+                   <a class="remove" href="javascript:;"></a>
+               </div>
+
 			</div>
 			<div style="display: block;" class="widget-body">
 				<!-- BEGIN FORM-->
-	 		    <form:form method="POST" action = "" modelAttribute="brands">
+	 		    <form:form method="POST" action = "" modelAttribute="brands"  class="cmxform form-horizontal">
 				<div class="control-group">
 					<label class="control-label">Brand Name</label>
 					<div class="controls">
-						<form:input path="braName"/>
-						<span class="help-inline"></span>
+						<form:input path="braName"  class="span4"/>
 					</div>
 				</div>
 	

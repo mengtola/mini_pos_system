@@ -8,85 +8,76 @@
 	  		<div class="widget blue">
 			<div class="widget-title">
 				<h4><i class="icon-reorder"></i> Add Product </h4>
-				<span class="tools">
-				<a href="javascript:;" class="icon-chevron-down"></a>
-				<a href="javascript:;" class="icon-remove"></a>
-				</span>
+				<div class="tools">
+                   <a class="collapse" href="javascript:;"></a>
+                   <a class="config" href="#portlet-config" data-toggle="modal"></a>
+                   <a class="reload" href="javascript:;"></a>
+                   <a class="remove" href="javascript:;"></a>
+               </div>
 			</div>
 			<div style="display: block;" class="widget-body">
 				<!-- BEGIN FORM-->
-	 		    <form:form method="POST" action = "" modelAttribute="products">
-	 		    <div class="span12">
-		 		    <div class="span4">
-						<div class="control-group">
-							<label class="control-label">Category</label>
-							<div class="controls">
-								<sf:select path="catId">
-									<sf:options items="${category_list}" itemValue="catId" itemLabel="catName"></sf:options>
-								</sf:select>
-								<span class="help-inline"></span>
-							</div>
+	 		    <form:form method="POST" action = "" modelAttribute="products"  class="cmxform form-horizontal">
+	 		    
+					<div class="control-group">
+						<label class="control-label">Category</label>
+						<div class="controls">
+							<sf:select path="catId"  class="span4">
+								<sf:options items="${category_list}" itemValue="catId" itemLabel="catName"></sf:options>
+							</sf:select>
 						</div>
-						<div class="control-group">
-							<label class="control-label">Brand</label>
-							<div class="controls">
-								<sf:select path="braId">
-									<sf:options items="${brand_list}" itemValue="braId" itemLabel="braName"></sf:options>
-								</sf:select>
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label">Product Name</label>
-							<div class="controls">
-								<form:input path="proName"/>
-								<span class="help-inline"></span>
-							</div>
-						</div>	
-						
 					</div>
-					<div class="span4">
-						<div class="control-group">
-							<label class="control-label">Qty</label>
-							<div class="controls">
-								<form:input path="qty"/>
-								<span class="help-inline"></span>
-							</div>
+					<div class="control-group">
+						<label class="control-label">Brand</label>
+						<div class="controls">
+							<sf:select path="braId"  class="span4">
+								<sf:options items="${brand_list}" itemValue="braId" itemLabel="braName"></sf:options>
+							</sf:select>
 						</div>
-						<div class="control-group">
-							<label class="control-label">Stock Price</label>
-							<div class="controls">
-								<form:input path="stockPrice"/>
-								<span class="help-inline"></span>
-							</div>
-						</div>
-						
 					</div>
-					<div class="span4">
-						<div class="control-group">
-							<label class="control-label">Sale Price</label>
-							<div class="controls">
-								<form:input path="salePrice"/>
-								<span class="help-inline"></span>
-							</div>
+					<div class="control-group">
+						<label class="control-label">Product Name</label>
+						<div class="controls">
+							<form:input path="proName"  class="span4"/>
 						</div>
-						<div class="control-group">
-							<label class="control-label">Status</label>
-							<div class="controls">
-								<sf:select path="proStatus">
-									<sf:options items="${prostatuslist}"></sf:options>
-								</sf:select>
-								<span class="help-inline"></span>
-							</div>
-						</div>
+					</div>	
 			
+					<div class="control-group">
+						<label class="control-label">Qty</label>
+						<div class="controls">
+							<form:input path="qty"  class="span4"/>
+						</div>
 					</div>
-				</div>
-				<div class="form-actions" style="clear:both;">
-						<button type="submit" class="btn btn-primary">Submit</button>
-						<button type="button" class="btn">Cancel</button>
+					<div class="control-group">
+						<label class="control-label">Stock Price</label>
+						<div class="controls">
+							<form:input path="stockPrice"  class="span4"/>
+						</div>
 					</div>
-				<div style="clear:both;"></div>
+					
+				
+	
+					<div class="control-group">
+						<label class="control-label">Sale Price</label>
+						<div class="controls">
+							<form:input path="salePrice"  class="span4"/>
+	
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">Status</label>
+						<div class="controls">
+							<sf:select path="proStatus"  class="span4">
+								<sf:options items="${prostatuslist}"></sf:options>
+							</sf:select>
+						</div>
+					</div>		
+				
+					<div class="form-actions" style="clear:both;">
+							<button type="submit" class="btn btn-primary">Submit</button>
+							<button type="button" class="btn">Cancel</button>
+						</div>
+					<div style="clear:both;"></div>
 				</form:form>
 				<!-- END FORM-->
 			</div>
